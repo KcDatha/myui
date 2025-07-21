@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import TransportationRequest from './components/TransportationRequest';
+import DriversListPage from './components/DriversListPage';
+import { SidebarProvider } from './context/SidebarContext';
 import './App.css';
 
-function App() {
+export default function App() {
+  const [currentPage, setCurrentPage] = useState('requests');
+
+  const renderCurrentPage = () => {
+    switch (currentPage) {
+      case 'requests':
+        return <TransportationRequest />;
+      case 'drivers':
+        return <DriversListPage />;
+      default:
+        return <TransportationRequest />;
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SidebarProvider>
+        {React.cloneElement(renderCurrentPage(), { setCurrentPage })}
+      </SidebarProvider>
     </div>
   );
 }
-
-export default App;
