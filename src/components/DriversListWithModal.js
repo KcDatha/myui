@@ -6,9 +6,7 @@ import {
   InputAdornment,
   Button,
   Avatar,
-  Chip,
   Pagination,
-  Modal,
   IconButton
 } from '@mui/material';
 import {
@@ -78,19 +76,6 @@ const DriversListWithModal = ({ open, onClose }) => {
       ]);
     }
   }, [open, drivers.length]);
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'Active':
-        return '#4CAF50';
-      case 'Assigned':
-        return '#FF5722';
-      case 'Away':
-        return '#FFC107';
-      default:
-        return '#757575';
-    }
-  };
 
   const handleDriverClick = (driver) => {
     setSelectedDriver(driver);
