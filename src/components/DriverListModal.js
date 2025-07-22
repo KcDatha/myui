@@ -12,72 +12,20 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import PersonIcon from '@mui/icons-material/Person';
 
+const statusColorMap = {
+  Available: '#4CAF50',
+  Busy: '#FF5722',
+  Unavailable: '#FFC107'
+};
+
 const DriverListModal = ({ open, onClose, onConfirm }) => {
   const drivers = [
-    {
-      id: 1,
-      name: 'Carlos C',
-      number: '+19876543210',
-      carModel: 'Toyota Camry',
-      accessibility: 'Wheel Chair',
-      locationSharing: true,
-      passengersAllowed: 4,
-      status: 'Available'
-    },
-    {
-      id: 2,
-      name: 'Carlos C',
-      number: '+19876543210',
-      carModel: 'Toyota Camry',
-      accessibility: 'Wheel Chair',
-      locationSharing: true,
-      passengersAllowed: 4,
-      status: 'Busy'
-    },
-    {
-      id: 3,
-      name: 'Carlos C',
-      number: '+19876543210',
-      carModel: 'Toyota Camry',
-      accessibility: 'Wheel Chair',
-      locationSharing: false,
-      passengersAllowed: 4,
-      status: 'Unavailable'
-    },
-    {
-      id: 4,
-      name: 'Carlos C',
-      number: '+19876543210',
-      carModel: 'Toyota Camry',
-      accessibility: 'Wheel Chair',
-      locationSharing: true,
-      passengersAllowed: 4,
-      status: 'Busy'
-    },
-    {
-      id: 5,
-      name: 'Carlos C',
-      number: '+19876543210',
-      carModel: 'Toyota Camry',
-      accessibility: 'Wheel Chair',
-      locationSharing: false,
-      passengersAllowed: 4,
-      status: 'Available'
-    }
+    { id: 1, name: 'Carlos C', number: '+19876543210', carModel: 'Toyota Camry', accessibility: 'Wheel Chair', locationSharing: true, passengersAllowed: 4, status: 'Available' },
+    { id: 2, name: 'Carlos C', number: '+19876543210', carModel: 'Toyota Camry', accessibility: 'Wheel Chair', locationSharing: true, passengersAllowed: 4, status: 'Busy' },
+    { id: 3, name: 'Carlos C', number: '+19876543210', carModel: 'Toyota Camry', accessibility: 'Wheel Chair', locationSharing: false, passengersAllowed: 4, status: 'Unavailable' },
+    { id: 4, name: 'Carlos C', number: '+19876543210', carModel: 'Toyota Camry', accessibility: 'Wheel Chair', locationSharing: true, passengersAllowed: 4, status: 'Busy' },
+    { id: 5, name: 'Carlos C', number: '+19876543210', carModel: 'Toyota Camry', accessibility: 'Wheel Chair', locationSharing: false, passengersAllowed: 4, status: 'Available' }
   ];
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'Available':
-        return '#4CAF50';
-      case 'Busy':
-        return '#FF5722';
-      case 'Unavailable':
-        return '#FFC107';
-      default:
-        return '#9E9E9E';
-    }
-  };
 
   const getStatusBgColor = (status) => {
     switch (status) {
@@ -168,96 +116,99 @@ const DriverListModal = ({ open, onClose, onConfirm }) => {
 
         {/* Driver List */}
         <Box sx={{ maxHeight: '350px', overflowY: 'auto' }}>
-          {drivers.map((driver) => (
-            <Box
-              key={driver.id}
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
-                gap: 2,
-                p: 2,
-                borderBottom: '1px solid #F0F0F0',
-                alignItems: 'center',
-                '&:hover': {
-                  backgroundColor: '#F9F9F9'
-                }
-              }}
-            >
-              {/* Name with Avatar */}
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Avatar sx={{ width: 32, height: 32, backgroundColor: '#E0E0E0' }}>
-                  <PersonIcon sx={{ fontSize: 20, color: '#666' }} />
-                </Avatar>
-                <Typography sx={{ fontSize: '14px', fontWeight: 500 }}>
-                  {driver.name}
-                </Typography>
-              </Box>
-
-              {/* Number */}
-              <Typography sx={{ fontSize: '14px', color: '#666' }}>
-                {driver.number}
-              </Typography>
-
-              {/* Car Model */}
-              <Typography sx={{ fontSize: '14px', color: '#666' }}>
-                {driver.carModel}
-              </Typography>
-
-              {/* Accessibility */}
-              <Typography sx={{ fontSize: '14px', color: '#666' }}>
-                {driver.accessibility}
-              </Typography>
-
-              {/* Location Sharing */}
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Switch
-                  checked={driver.locationSharing}
-                  size="small"
-                  sx={{
-                    '& .MuiSwitch-switchBase.Mui-checked': {
-                      color: '#2196F3'
-                    },
-                    '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                      backgroundColor: '#2196F3'
-                    }
-                  }}
-                />
-                <Typography sx={{ fontSize: '12px', color: '#666', ml: 1 }}>
-                  {driver.locationSharing ? 'Yes' : 'No'}
-                </Typography>
-              </Box>
-
-              {/* Passengers Allowed */}
-              <Typography sx={{ fontSize: '14px', color: '#666', textAlign: 'center' }}>
-                {driver.passengersAllowed}
-              </Typography>
-
-              {/* Status */}
+          {drivers.map((driver) => {
+            const color = statusColorMap[driver.status] || '#9E9E9E';
+            return (
               <Box
+                key={driver.id}
                 sx={{
-                  display: 'inline-flex',
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+                  gap: 2,
+                  p: 2,
+                  borderBottom: '1px solid #F0F0F0',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  px: 2,
-                  py: 0.5,
-                  borderRadius: '12px',
-                  backgroundColor: getStatusBgColor(driver.status),
-                  border: `1px solid ${getStatusColor(driver.status)}`,
-                  minWidth: '80px'
+                  '&:hover': {
+                    backgroundColor: '#F9F9F9'
+                  }
                 }}
               >
-                <Typography
+                {/* Name with Avatar */}
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Avatar sx={{ width: 32, height: 32, backgroundColor: '#E0E0E0' }}>
+                    <PersonIcon sx={{ fontSize: 20, color: '#666' }} />
+                  </Avatar>
+                  <Typography sx={{ fontSize: '14px', fontWeight: 500 }}>
+                    {driver.name}
+                  </Typography>
+                </Box>
+
+                {/* Number */}
+                <Typography sx={{ fontSize: '14px', color: '#666' }}>
+                  {driver.number}
+                </Typography>
+
+                {/* Car Model */}
+                <Typography sx={{ fontSize: '14px', color: '#666' }}>
+                  {driver.carModel}
+                </Typography>
+
+                {/* Accessibility */}
+                <Typography sx={{ fontSize: '14px', color: '#666' }}>
+                  {driver.accessibility}
+                </Typography>
+
+                {/* Location Sharing */}
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Switch
+                    checked={driver.locationSharing}
+                    size="small"
+                    sx={{
+                      '& .MuiSwitch-switchBase.Mui-checked': {
+                        color: '#2196F3'
+                      },
+                      '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                        backgroundColor: '#2196F3'
+                      }
+                    }}
+                  />
+                  <Typography sx={{ fontSize: '12px', color: '#666', ml: 1 }}>
+                    {driver.locationSharing ? 'Yes' : 'No'}
+                  </Typography>
+                </Box>
+
+                {/* Passengers Allowed */}
+                <Typography sx={{ fontSize: '14px', color: '#666', textAlign: 'center' }}>
+                  {driver.passengersAllowed}
+                </Typography>
+
+                {/* Status */}
+                <Box
                   sx={{
-                    fontSize: '12px',
-                    fontWeight: 500,
-                    color: getStatusColor(driver.status)
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    px: 2,
+                    py: 0.5,
+                    borderRadius: '12px',
+                    backgroundColor: getStatusBgColor(driver.status),
+                    border: `1px solid ${color}`,
+                    minWidth: '80px'
                   }}
                 >
-                  {driver.status}
-                </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: '12px',
+                      fontWeight: 500,
+                      color
+                    }}
+                  >
+                    {driver.status}
+                  </Typography>
+                </Box>
               </Box>
-            </Box>
-          ))}
+            );
+          })}
         </Box>
 
         {/* Footer Buttons */}
