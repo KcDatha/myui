@@ -3,67 +3,63 @@ import { Box, Typography } from '@mui/material';
 import ActiveFigmaCard from './ActiveFigmaCard';
 
 const ActiveTab = () => {
-  // Sample data matching the Active tab design
+  // Sample data matching the default structure used by New, Completed, and Rejected tabs
   const requests = [
     {
       id: '#AB123',
-      name: 'David Johnson',
+      type: 'One Way',
       time: '3:20 PM',
       date: '15 Jul 2025',
-      type: 'One Way',
-      currentAddress: '111 Main St, Florence, SC, 29501',
-      returnDate: '25 July, 2025',
-      phoneNumber: '+19876543215',
-      destinationAddress: '222 Oak Ave, Asheville, NC, 28801',
-      passengerCount: '2 passengers',
-      plateNumber: 'MNO 1234',
-      driverName: 'Chris Taylor',
-      status: 'In Progress'
-    },
-    {
-      id: '#AB129',
-      name: 'Susan Miller',
-      time: '10:30 AM',
-      date: '20 Jul 2025',
-      type: 'Round',
-      currentAddress: '333 Pine St, Sumter, SC, 29150',
-      returnDate: '27 July, 2025',
-      phoneNumber: '+19876543216',
-      destinationAddress: '444 Elm Dr, Raleigh, NC, 27601',
+      name: 'John Doe',
+      currentAddress: '123 St, Clemson, SC, 12345',
+      returnDate: '20 July, 2025',
+      phoneNumber: '+19875543210',
+      destinationAddress: '567 St, Charlotte, NC, 23456',
       passengerCount: '4 passengers',
-      plateNumber: 'PQR 5678',
-      driverName: 'Mark Thompson',
-      status: 'En Route'
+      plateNumber: 'ABC 1234',
+      driverName: 'Cooper Dan'
     },
     {
-      id: '#AB130',
-      name: 'Jennifer Garcia',
-      time: '2:15 PM',
-      date: '20 Jul 2025',
-      type: 'One Way',
-      currentAddress: '555 Cedar Ln, Anderson, SC, 29621',
-      returnDate: '26 July, 2025',
-      phoneNumber: '+19876543217',
-      destinationAddress: '666 Maple St, Durham, NC, 27701',
-      passengerCount: '3 passengers',
-      plateNumber: 'STU 9012',
-      driverName: 'Kevin Brown',
-      status: 'Assigned'
-    },
-    {
-      id: '#AB131',
-      name: 'Michael Rodriguez',
-      time: '4:45 PM',
-      date: '21 Jul 2025',
+      id: '#AB124',
       type: 'Round',
-      currentAddress: '777 Birch Ave, Greenwood, SC, 29646',
-      returnDate: '29 July, 2025',
-      phoneNumber: '+19876543218',
-      destinationAddress: '888 Willow Rd, Winston-Salem, NC, 27101',
+      time: '10:30 AM',
+      date: '16 Jul 2025',
+      name: 'John Doe',
+      currentAddress: '456 Ave, Columbia, SC, 29201',
+      returnDate: '22 July, 2025',
+      phoneNumber: '+19875543211',
+      destinationAddress: '789 Blvd, Raleigh, NC, 27601',
+      passengerCount: '2 passengers',
+      plateNumber: 'DEF 5678',
+      driverName: 'Alex Johnson'
+    },
+    {
+      id: '#AB125',
+      type: 'One Way',
+      time: '2:15 PM',
+      date: '17 Jul 2025',
+      name: 'John Doe',
+      currentAddress: '321 Rd, Charleston, SC, 29401',
+      returnDate: '23 July, 2025',
+      phoneNumber: '+19875543212',
+      destinationAddress: '654 Dr, Durham, NC, 27701',
+      passengerCount: '3 passengers',
+      plateNumber: 'GHI 9012',
+      driverName: 'Sarah Davis'
+    },
+    {
+      id: '#AB126',
+      type: 'Round',
+      time: '4:45 PM',
+      date: '18 Jul 2025',
+      name: 'John Doe',
+      currentAddress: '987 Ln, Greenville, SC, 29601',
+      returnDate: '25 July, 2025',
+      phoneNumber: '+19875543213',
+      destinationAddress: '147 Way, Winston-Salem, NC, 27101',
       passengerCount: '5 passengers',
-      plateNumber: 'VWX 3456',
-      driverName: 'Amanda Wilson',
-      status: 'Scheduled'
+      plateNumber: 'JKL 3456',
+      driverName: 'Tom Miller'
     }
   ];
 
@@ -82,7 +78,6 @@ const ActiveTab = () => {
           key={index}
           request={request}
           index={index}
-          showStatus={index === 1} // Show status for second card
         />
       ))}
 
